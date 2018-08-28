@@ -1,0 +1,15 @@
+-- Hive commands for registering a function
+USE functions;
+SET hivevar:hivejar='${path_to_hive_artifact}';
+
+SET hivevar:functionname=<name_of_UDF>;
+DROP FUNCTION IF EXISTS ${hivevar:functionname};
+CREATE FUNCTION
+    ${hivevar:functionname}
+AS
+    'UDF_java_package'
+USING JAR
+    ${hivevar:hivejar}
+;
+-- Reload has to be triggered after registering all the UDFs
+reload;
