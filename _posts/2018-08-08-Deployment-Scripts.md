@@ -12,11 +12,12 @@ First thing that comes to my mind when talking about scripts, is task automation
 
 Scripts are extremely useful for automating a lot of frequent and tedious tasks. At Adello, these scripts are everywhere and are used for doing a wide array of tasks: from generating a git tag to deploying a newly developed feature on our production system. The simple philosophy of a script is to complete a task which can only be done in one particular way. Such tasks generally consist of a standard list of sequential actions. So what kind of scripts do we use at Adello? Well, discussing all of them here is neither possible nor practical. But some of the most commonly used scripts in Adello are our deployment scripts, which are the focal point of this post. This is not to say that other scripts are not used that often, but to insinuate the existence of a special category of scripts, doing one particular task: code deployment.
 
-As the name suggests, these are the scripts we use to deploy our new/updated code repositories or to deploy new/updated software libraries on our production systems (multiple data centers located globally). Whenever we need to deploy an artifact, instead of deploying it manually, the task is handed over to these so called, deployment scripts (yes, we have many). To get a better understanding of the content of these scripts, we shall look into two of our deployment scripts available [here](../_opensourced_code/_deployment_scripts/).
+As the name suggests, these are the scripts we use to deploy our new/updated code repositories or to deploy new/updated software libraries on our production systems (multiple data centers located globally). Whenever we need to deploy an artifact, instead of deploying it manually, the task is handed over to these so called, deployment scripts (yes, we have many). To get a better understanding of the content of these scripts, we shall look into two of our deployment scripts available [here](https://github.com/adello/adello.github.io/tree/master/_opensourced_code/_deployment_scripts).
 
+---
 At Adello, we use Cloudera Hadoop Distribution (CDH) as our big data platform. Like any other company dealing with big data, we have to create, update, and maintain a variety of ETL pipelines. Many of our pipelines use Apache Oozie Scheduler where we configure our workflows to run actions from Hive, Pig, Spark, Sqoop, HDFS and so on. Whenever we upgrade to a more recent CDH version, we need to redeploy our Oozie libraries. The deployment of Spark and Pig libraries is highly customized to our custom needs and is therefore not included in this post. Oozie supports a ShareLib directory to accommodate the external JAR files of all the actions (such as Distcp, Hive, Sqoop etc.) rather than providing these files in the workflow for each individual action. For each type of action in an Oozie workflow, the correspoding JAR files can be stored in this ShareLib path. Also the old files from this shared directory can be deleted once they are no longer needed. Whenever Oozie needs to be redeployed, for instance after a CDH upgrade, the corresponding JAR files for various actions are to be downloaded from a central repository. The old files are therefore removed from shared path during deployment.
 
-##### Oozie libs deployment script
+#### Oozie libs deployment script
 The main function of deploy-oozie-libs script is shown below.
 
 ```python
@@ -154,7 +155,7 @@ def register_permanent_functions(ad_hive_jar, dc):
     subprocess.check_output(cmd)
 ```
 
-`PERMANENT_FUNCTIONS_FILE` file consists of the specification of all the UDFs we have in our repository and we want to register with Hive server. A sample of this file with one UDF specification can be found [here](../_opensourced_code/_deployment_scripts/UDF_specification_file.hive) (notice the `reload` command at the end of this file). Using `beeline` command, this file is sent to the desired Hive server via a JDBC connection. After this, all UDFs have been registered in Hive permanently.
+`PERMANENT_FUNCTIONS_FILE` file consists of the specification of all the UDFs we have in our repository and we want to register with Hive server. A sample of this file with one UDF specification can be found [here](https://github.com/adello/adello.github.io/blob/master/_opensourced_code/_deployment_scripts/UDF_specification_file.hive) (notice the `reload` command at the end of this file). Using `beeline` command, this file is sent to the desired Hive server via a JDBC connection. After this, all UDFs have been registered in Hive permanently.
 
 There are several other deployment sub-tasks apart from the ones discussed above which can be delegated to deployment scripts. Some of these sub-tasks are:
 
