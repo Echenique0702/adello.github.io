@@ -1,9 +1,9 @@
 ---
 layout: post
-title: deployment.scripts
-subtitle: For fast, secure and efficient deployment
+title: Tackling CI/CD for Machine Learning 
+subtitle: Automating deployment of Oozie and Hive
 category: data
-tags: [data science, deployment, automation, scripts]
+tags: [howto, devops]
 author: Dhiraj Pathania
 header-img: "images/scripting.jpg"
 ---
