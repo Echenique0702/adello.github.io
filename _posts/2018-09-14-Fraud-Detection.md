@@ -3,7 +3,7 @@ layout: post
 title: ad.fraud.detection
 subtitle: What do we do to prevent fraud
 category: data
-tags: [data science, fraud]
+tags: [data science, adtech, howto]
 author: Ignacio Traverso
 header-img: "images/fraud-detection.jpg"
 ---
