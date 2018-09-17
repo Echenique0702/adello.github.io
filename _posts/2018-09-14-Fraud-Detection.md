@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ad.fraud.detection
+title: Ad Fraud: Fighting scammers in an unsupervised setting
 subtitle: What do we do to prevent fraud
 category: data
 tags: [data science, adtech, howto]
@@ -8,7 +8,7 @@ author: Ignacio Traverso
 header-img: "images/fraud-detection.jpg"
 ---
 
-*Impressions, clicks and other fraudulent things*
+*To fraudulent impressions, clicks and beyond*
 
 The advertisement industry can be different to other industries in many aspects. Fraud is not one of these aspects. Scammers are everywhere and mobile advertisement is not different. In order to explain where are the fraudsters picking their money from, first we have to understand how do the money flows in the web advertising industry. For the sake of clarity, we will explain it through an scenario with only four actors though in the daily business more actors are participating.
 
