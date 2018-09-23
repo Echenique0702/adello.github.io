@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Fighting Ad Fraught with Machine Learning
+title: Fighting Ad fraught with Machine Learning
 subtitle: Tackling fraudulent impressions, clicks and beyond
 category: data
 tags: [data science, adtech, howto]
@@ -8,9 +8,9 @@ author: Ignacio Traverso
 header-img: "images/fraud-detection.jpg"
 ---
 
-*How machine learning helps us preventing fraud*
+*How machine learning helps us preventing Ad fraud*
 
-The advertisement industry can be different to other industries in many aspects. Fraud is not one of these aspects. Scammers are everywhere and mobile advertisement is not different. In order to explain where are the fraudsters picking their money from, first we have to understand how do the money flows in the web advertising industry. For the sake of clarity, we will explain it through an scenario with only four actors though in the daily business more actors are participating.
+The advertisement industry can be different to other industries in many aspects. [(Ad) Fraud](https://en.wikipedia.org/wiki/Ad_fraud) unfortunatly is not one of these aspects. Scammers are everywhere and mobile advertisement is not different. In order to explain where are the fraudsters picking their money from, first we have to understand how do the money flows in the web advertising industry. For the sake of clarity, we will explain it through an scenario with only four actors though in the daily business more actors are participating.
 
 * **Advertiser**: It is the one bringing the money to the industry. They pay to be shown in apps and websites. They may have different KPIs like impressions, clicks or purchases. Regardless the used KPI, they want to show their ads to humans who may be interested on buying their products. Fraudsters do not have interest on buying anything, so they are not the target of their campaigns.
 * **DSPs (Adello)**: They run campaigns for advertisers by participating in real time biddings and buying impressions (or clicks, or purchases, etc.) that fulfill a given set of conditions, e.g. location, gender, age, etc. These people do not want to buy fraud. If the advertiser, i.e. customer, realizes that the DSP is buying fraud with their money, the advertiser won't be happy and everybody know what happens when your customer is not happy.
