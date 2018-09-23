@@ -1,14 +1,14 @@
 ---
 layout: post
-title: Ad Fraud: Fighting scammers with Machine Learning
-subtitle: How machine learning helps us preventing fraud
+title: Fighting Ad Fraught with Machine Learning
+subtitle: Tackling fraudulent impressions, clicks and beyond
 category: data
 tags: [data science, adtech, howto]
 author: Ignacio Traverso
 header-img: "images/fraud-detection.jpg"
 ---
 
-*To fraudulent impressions, clicks and beyond*
+*How machine learning helps us preventing fraud*
 
 The advertisement industry can be different to other industries in many aspects. Fraud is not one of these aspects. Scammers are everywhere and mobile advertisement is not different. In order to explain where are the fraudsters picking their money from, first we have to understand how do the money flows in the web advertising industry. For the sake of clarity, we will explain it through an scenario with only four actors though in the daily business more actors are participating.
 
