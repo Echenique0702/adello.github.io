@@ -3,7 +3,7 @@ layout: post
 title: Fighting Ad fraught with Machine Learning
 subtitle: Tackling fraudulent impressions, clicks and beyond
 category: data
-tags: [data science, adtech, howto]
+tags: [adtech, howto]
 author: Ignacio Traverso
 header-img: "images/fraud-detection.jpg"
 ---
