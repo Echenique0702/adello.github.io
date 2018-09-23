@@ -1,4 +1,4 @@
----
+--
 layout: post
 title: Ad Fraud: Fighting scammers with Machine Learning
 subtitle: How machine learning helps us preventing fraud
@@ -6,7 +6,7 @@ category: data
 tags: [data science, adtech, howto]
 author: Ignacio Traverso
 header-img: "images/fraud-detection.jpg"
----
+--
 
 *To fraudulent impressions, clicks and beyond*
 
