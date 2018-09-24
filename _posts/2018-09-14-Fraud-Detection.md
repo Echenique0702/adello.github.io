@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Ad Fraud: Fighting scammers with data science
+title: Fighting ad fraud with data science
 subtitle: What do we do to prevent fraud
 category: data
-tags: [data science, adtech, howto]
+tags: [adtech, howto]
 author: Ignacio Traverso
 header-img: "images/fraud-detection.jpg"
 ---
