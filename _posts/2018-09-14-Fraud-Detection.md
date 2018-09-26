@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Fighting Ad fraught with Machine Learning
+title: Fighting Ad fraud with Machine Learning
 subtitle: Tackling fraudulent impressions, clicks and beyond
 category: data
 tags: [adtech, howto]
