@@ -36,3 +36,9 @@
 
 - slug: ux
   name: UX
+
+- slug: ml
+  name: Machine Learning
+
+- slug: spark
+  name: Spark
