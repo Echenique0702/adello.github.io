@@ -72,10 +72,10 @@ In the plot below you can see the distribution of the skewness and the effect of
 
 
 * **Too many peaks**<br/>
-Using a rudimental peak detecting algorithm, written in pyspark and reported below, we can count the number of peaks that the age distribution shows.
+Using a basic peak detecting algorithm, written in pyspark and reported below, we can count the number of peaks on the age distribution.
 ```python
 from pyspark.sql import functions as F
-from pyspark.sql.types import IntegerType, DoubleType, StringType
+from pyspark.sql.types import IntegerType
 from pyspark.sql import Window
 def get_apps_with_peak_information(df):
     window_frac = Window.partitionBy(df['apps']).orderBy(df['age'].asc())

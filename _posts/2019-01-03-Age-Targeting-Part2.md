@@ -209,7 +209,7 @@ This follows the bussiness idea that customers are more interested on specific a
 
 
 **Put everything into production**<br/>
-We put the train-predict structure into production in our cluster creating a oozie pipeline which triggers a spark job on a daily base.
+We put the train-predict structure into production creating a oozie pipeline which triggers a spark job on a daily base.
 This means that as we collect new data (new devices and apps) we add the part which contains reliable ground truth to the training data, we update the features with the most recent information and we predict over the entire dataset.
 The predicted ages are written into Cassandra, in this way the Adello bidding system can access those informations at the bidding time.
 A report of the performances is created every time a new model is built to monitoring the status in case of unespected behaviour.
