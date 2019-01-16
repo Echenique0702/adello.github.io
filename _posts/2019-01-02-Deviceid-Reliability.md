@@ -8,20 +8,24 @@ author: Alessio Borgheresi
 header-img: "images/Deviceid-Reliability/data_quality.jpg"
 ---
 
-This post describes an example of the quality selection we perform at Adello, underlining the benefits we gain from it.
+At Adello we are processing a lot of data. 
+In a perfect world, we could just take them and use them directly for the benefit of our customers. 
+In reality, the data are not always correct and to produce some reliable outputs it is necessary to filter out those inconsistency.
+In this post we describe an example of the quality selection we perform at Adello, underlining the benefits we gain from it.
 
 In a [previous post](https://adello.github.io/Tracking/) we introduced the way we identify a device for advertising targeting purpose.
 In summary, we use the Android **[Advertising ID](https://support.google.com/googleplay/android-developer/answer/6048248?hl=en)** and the iOS Identifier for Advertisers. 
 In the rest of the post we call these random pseudonyms as **deviceID** since we use them as an identifier of a smart device (mobile, pad, etc...).
 
-It is expected that:
+In particular, it is expected that:
 - behind a deviceID there should be a real physical device used by a human person, 
 - when a physical device uses different apps, those should give the same deviceID (unless it is resetted by the device's user which definetively does not occur at a per minute/hour frequency).
 
 The base data for all future investigations can simply be described as a list of visits of deviceID and apps at certain times.
 <p align="center"> <img src="../images/Deviceid-Reliability/table_data_example.png"> </p>
-
-Let's go into details of the discovered patterns:
+Quering the dataset via hive or spark we can test if the data looks like what we expect.
+The goal of the study is to identify a set of pattern which lead to select unreliable device identifiers.
+Let's go into details about the discovered patterns.
 
 * **Fraction of unique devices**<br/>
 Only apps with a certain number of distinct deviceIDs must be considered to avoid statistical fluctuations.
@@ -72,10 +76,15 @@ To monitor the amount of the rejected devices and apps we store all the calculat
 
 
 **Main benefits:**<br/>
-* Higher quality and reliability of your data mean higher correctness of business insights and, so, better model performances (in terms of $$ not only roc auc or logloss).
-Problem of a polluted variable in a model
-Another 
+* Higher quality and reliability of your data mean higher correctness of business insights and better performances.
+In the end our customers wants to target some specific audience and the procedure to select that audience can only benefit from the removal of the broken data.
+You could think the data quality selection like the restoration of a piece of art.
+It is only when you remove the pollution effects that you can enjoy the original colors used by the artist.
 * The data quantity is reduced, so the computation time is speed up.
 Indeed, the quality filter is applied as soon as possible to optimize the overall general data flow. 
 * The quality selection is agnostic with respect to the model we apply. 
 Every process which use those data will benefit from the quality selection applied.
+You can think about a model which use the number of apps visited by the device as input feature.
+When you keep the fake devices which visit 1000 apps per day you should not be surprised if the model won't get the best out of that information.
+
+To conclude we could paraphrase what the ancient Romans use to say: business sano in data sano.
