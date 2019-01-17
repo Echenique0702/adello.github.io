@@ -10,7 +10,7 @@ header-img: "images/Deviceid-Reliability/data_quality.jpg"
 
 At Adello we are processing a lot of data. 
 In a perfect world, we could just take them and use them directly for the benefit of our customers. 
-In reality, the data are not always correct and to produce some reliable outputs it is necessary to filter out those inconsistency.
+In reality, the data is not always correct and to produce reliable output it is necessary to filter out this inconsistency.
 In this post we describe an example of the quality selection we perform at Adello, underlining the benefits we gain from it.
 
 In a [previous post](https://adello.github.io/Tracking/) we introduced the way we identify a device for advertising targeting purpose.
@@ -24,16 +24,15 @@ In particular, it is expected that:
 The base data for all future investigations can simply be described as a list of visits of deviceID and apps at certain times.
 <p align="center"> <img src="../images/Deviceid-Reliability/table_data_example.png"> </p>
 Quering the dataset via hive or spark we can test if the data looks like what we expect.
-The goal of the study is to identify a set of pattern which lead to select unreliable device identifiers.
+The goal of the study is to identify a set of pattern which allows us to select only reliable device identifiers and filter out those which are not real, either because of technical problems or due to fraudulent behavior.
 Let's go into details about the discovered patterns.
 
 * **Fraction of unique devices**<br/>
 Only apps with a certain number of distinct deviceIDs must be considered to avoid statistical fluctuations.
 For each app the ratio of the recorded sessions and distinct device identifiers is calculated.
 The value one means that each session has a different device identifier while values close to zero means that all sessions have the same deviceID.
+In both situations we consider unreliable the deviceIDs send these apps.
 ![frac_uniq_dev](../images/Deviceid-Reliability/fraction_unique_devices.png)
-We suspect that something is broken in the way the apps provide/access the deviceID information.
-All apps which send broken deviceIDs are considered unreliable.
 
 
 * **Non realistic number of apps**<br/>
@@ -70,21 +69,20 @@ However, there is not a single method among those which can be completely substi
 Indeed, we include all of them in our deviceID reliability filter (except the randomly generated one since there are no devices which are randomly generated).
 
 **Put everything into production:**<br/>
-We put this quality filter selection into production creating a oozie pipeline which calls the hive queries that implements the described methods.
-The pipeline runs on a daily base such that as we acquire new data we filter out the broken one.
+We put this quality filter selection into production creating an oozie pipeline which calls the hive queries that implement the described methods.
+The pipeline runs on a daily base, acquiring new data and filtering out the unreliable device identifiers.
 To monitor the amount of the rejected devices and apps we store all the calculated information such that it is easy to trace back for which reason the data have been flagged as unreliable.  
 
 
 **Main benefits:**<br/>
 * Higher quality and reliability of your data mean higher correctness of business insights and better performances.
-In the end our customers wants to target some specific audience and the procedure to select that audience can only benefit from the removal of the broken data.
+In the end our customers wants to target specific audience and the procedure to select that audience can only benefit from the removal of the broken data.
 You could think the data quality selection like the restoration of a piece of art.
 It is only when you remove the pollution effects that you can enjoy the original colors used by the artist.
 * The data quantity is reduced, so the computation time is speed up.
 Indeed, the quality filter is applied as soon as possible to optimize the overall general data flow. 
 * The quality selection is agnostic with respect to the model we apply. 
-Every process which use those data will benefit from the quality selection applied.
-You can think about a model which use the number of apps visited by the device as input feature.
-When you keep the fake devices which visit 1000 apps per day you should not be surprised if the model won't get the best out of that information.
+Every process which uses those data will benefit from the quality selection applied.
+When you keep the fake devices which visit 1000 apps per day you should not be surprised if consuming processes won't get the best out of that information.
 
 To conclude we could paraphrase what the ancient Romans use to say: business sano in data sano.
