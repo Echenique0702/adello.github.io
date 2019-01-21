@@ -9,7 +9,7 @@ header-img: "images/Age-Targeting/true_age.jpg"
 ---
 
 
-In mobile advertising it is possible to target the audience of the campaign based on some charateristics of the users.
+In mobile advertising it is possible to target specific audiences based on some characteristics of the users.
 Here we are focusing on the age.
 However, these informations are only provided on by a subset of apps during the bidding process.
 To increase the available targeting audience we would need an estimation of the age for the devices which never use those apps and here is when the machine learning comes into place.
@@ -18,26 +18,27 @@ To train a supervised machine learning for infearing the age over all the device
 - a **reliable ground truth** datasets (in our case the age for certain devices);
 - the **features** which will go as inputs to the model.
 
-The ground truth has to be reliable or the model will learn non realistic structure.
-Moreover, it could improve the performances of the training.
-In this post it is discussed only the ground truth selection step, leaving the feature creation, the tuning, the train and the prediction of the model for the next time.
+In this post, we only discuss the ground truth selection step, leaving the feature creation, the tuning, the train and the prediction of the model for the next time.
+
+**Introduction: the importance to seek the truth**<br/>
+The ground truth has to be reliable or:
+- the model will learn non realistic structures;
+- the performances of the model will decrease since the unreliable ground truth is based on arbitrary or random relations.
 
 Reliability is not a statistic quantity that you can find in the books.
-To summarize the concept in one phrase, we could state that your data are reliable as long as all your results follow an explainable behaviour without any inconsistency results.
-It is based on this idea that we have studied and discovered some pattern in the data that in the end we prefer to exclude from the ground truth dataset.
+To summarize the concept in one phrase, we could state that your data are reliable as long as all your results follow an explainable behaviour without any inconsistenties.
+This is based on the fact, that we often find patterns which imply some problems in the data.
+We want to discover all of those patterns and exclude them from our dataset.
 
 We can structure the age information unreliability in two ways:
-* consistency of a deviced as observed multiple times on the same app;
-* consistency of a device as observed in differnt apps.
+1. consistency of a deviced as observed multiple times on the same app;
+2. consistency of a device as observed in differnt apps.
 
-A very simple example of the two situations (plus a reliable age information) can be observed in the data sample below.
-<p align="center"> <img src="../images/Age-Targeting/table_age_apps_dev.png"> </p>
-
-**Inter app reliability**:<br/>
+**1) inter app reliability**:<br/>
 In the plot below you can find some **examples of the age distribution** for four apps.
 ![example_age_distribution](../images/Age-Targeting/example_age_distribution.png)
-Different apps show a clear different age distribution.
-However, it is clear that some of the distributions in the plot do not seem to make really sense.
+Different apps clearly show different age distributions..
+However, it is clear that some of the distributions in the plot do not make sense.
 Why would people from 17-18 correspond to more than 95% of the total users of the app? (What happens to the 16ties? or 19ties?)
 Why would apps have the same numbers of devices for every age in a specific range?
 These must be very special apps, or the data do not correspond to truth.
@@ -109,7 +110,7 @@ It surprises us to see that the ammount of apps with an unrealistic distribution
 However, since the model benefits from the chirurgical operation and we sill have plenty of devices to train on, we do not esitate on rejecting those apps.
 
 
-**Intra apps reliability**<br/>
+**2) intra apps reliability**<br/>
 The next step is to exclude the app which are not consistent with the other apps.
 In the table below you can see that it is no garantee that for different apps the same age information is provided.
 <p align="center"> <img src="../images/Age-Targeting/table_apps_which_do_not_agree.png"> </p>
