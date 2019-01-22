@@ -23,6 +23,7 @@ To make the target usable to the spark ML library we need to map the age_group s
 
 ```python
 from pyspark.ml.feature import StringIndexer
+
 label_stringidx = StringIndexer(inputCol=target_col, outputCol=label_col)
 df = label_stringidx.fit(df).transform(df)
 ```
@@ -67,8 +68,10 @@ To capture weakly effects we also calculate the same feature on a per day of the
 The apps used over the last month.
 This feature is is directly related with the task for which a person use its smart device and, as we will see in later in the post, it produces the most important features.
 We create a bag of apps while keeping into consideration the frequency of use.
+
 ```python
 from pyspark.ml.feature import CountVectorizer, Normalizer
+
 apps_count_vectorizer = CountVectorizer(inputCol=feature_col, 
                                           outputCol=count_vectorizer_col, 
                                           minDF=min_df)
@@ -82,8 +85,10 @@ Apps visited by few devices increase the possibility to overfit, we can cut off 
 Both make and model can be expressed as categorical features and treated via [One Hot Encoding](https://en.wikipedia.org/wiki/One-hot).
 Due to the high cardinality of the models we regroup the low frequency within a single index to avoid statistical fluctuations.
 We know that certain models can be more appealing for younger people while others could have different functionalities more appreciated in the adult phase (e.g. a big screen of a pad).
+
 ```python
 from pyspark.ml.feature import OneHotEncoderEstimator
+
 make_model_ohe = OneHotEncoderEstimator(inputCols=[make_col, model_col], 
                                            outputCols=[make_col_out, model_col_out])
 ```
@@ -96,23 +101,26 @@ It is a proxy for many different quantities such as economy wealthy, age distrib
 Number of distinct apps used by the device.
 People which tends to adapts to new technologies faster (often the youger) could use a larger numbers of apps for their daily needs.
 StandardScale is applied to rescale the data into a range closer to the unity, so that these values can be well accepted even by Neural Networks models.
+
 ```python
 from pyspark.ml.feature import StandardScaler
+
 num_apps_standard_scaler = StandardScaler(inputCol=number_of_apps_col, 
                                             outputCol=number_of_apps_output_col, 
                                             withMean=True, 
                                             withStd=True)
 ```
 
+**Putting all together**<br/>
 All these features are then aggregated into a single vector column to satisfy the spark structure.
 The overall preprocess can be explicited as a single pipeline.
 
 ```python
 from pyspark.ml.feature import VectorAssembler
+from pyspark.ml import Pipeline
+
 va = VectorAssembler(inputCols=list_with_all_the_features_column_name, 
                      outputCol=outputcolname)
-
-from pyspark.ml import Pipeline
 preprocessing_pipeline = Pipeline(stages=[apps_count_vectorizer, 
                                           apps_normalizer, 
                                           make_model_ohe, 
