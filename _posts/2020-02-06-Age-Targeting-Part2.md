@@ -8,8 +8,10 @@ author: Alessio Borgheresi
 header-img: "images/Age-Targeting/man_woman_question.jpg"
 ---
 
-
-Goal of the project: extend the age targeting audience providing and estimation of the age for all the devices, in particular,  when the ground truth age information is not known. 
+In mobile advertising it is possible to target specific audiences based on some characteristics of the users. 
+Here we are focusing on the age, which information is not provided by all apps and, consequently, for many devices.
+However, having several devices where the ground truth is known allow us to build a supervised machine learning model to provide an estimation of the age over the entire dataset.
+In this post we will describe the steps from the preprocessing to the predict and how we put everything into production. 
 
 **Ground truth selection**<br/>
 In the previous [post](https://adello.github.io/Age-Targeting-Part1/) we described how the ground truth reliable dataset was created.
