@@ -12,7 +12,6 @@ Hello. Let me start by telling you, that viewability is somewhat of a pet peeve 
 Viewability measurement and delivery should be the absolute standard nowadays. According to the [definition of the IAB](https://www.iab.com/wp-content/uploads/2015/06/MRC-Viewable-Ad-Impression-Measurement-Guideline.pdf), an advertisement is considered viewable (*crinch*) when more than 50% of its content was in the viewport for more than one second.
 
 <p align="center"> <img src="../images/Viewability/view.png">
-Definition of viewability, according to IAB.
 </p>
 
 From my point of view, this should be the absolute minimum requirement for an ad to be "delivered".
@@ -20,9 +19,6 @@ But interestingly, the guarantee of viewability is not in high demand. We offer 
 
 So, now that I got this out of my system, I want to explain, how we measure and deliver viewability.
 
-<p align="center"> <img src="../images/Viewability/overview.png">
-General data flow.
-</p>
 
 ### Measuring
 
@@ -35,7 +31,7 @@ In apps, we first check if a version of [MRAID](https://www.iab.com/guidelines/m
 mraid.isViewable()
 ```
 
-to know, whether the ad is currently visible or not. But since we need not only to know, if the ad unit is viewable, but also for how long, we need to monitor its status. Instead of calling the upper function every couple of milliseconds, we make use viewable change event, specified in MRAID:
+to know, whether the ad is currently visible or not. But since we need not only to know, if the ad unit is viewable, but also for how long, we need to monitor its status. Instead of calling the upper function every couple of milliseconds, we make use of the viewable change event, specified in MRAID:
 
 ```javascript
 var mraidEvent = mraid.EventType ? (mraid.EventType.VIEWABLE_CHANGE || 'viewableChange') : 'viewableChange';
@@ -45,6 +41,8 @@ function onMraidViewableChange() {
    mraidViewable = mraid.isViewable();
 }
 ```
+
+If MRAID is not available, we are not able to measure the viewability in apps.
 
 
 #### Mobile web
@@ -79,7 +77,7 @@ By using the presented techniques, we are able to measure viewability in about 8
 
 So now we have for each impression the information if a) we could measure the viewability and b) if it was viewable.
 In general, we count unmeasurable impressions as not viewable.
-We use this information to deliver campaigns with viewable impressions as primary KPI. Thus, we want to be able to buy viewable impressions for a given price.
+We use this information to deliver campaigns with viewable impressions as primary [KPI](https://en.wikipedia.org/wiki/Performance_indicator). Thus, we want to be able to buy viewable impressions for a given price.
 
 But we are buying impressions. In fact, we are taking part in digital auctions for each individual impressions and bid a specific price in each auction. Thus, we cannot buy viewable impressions but need to relate the value of a viewable impression to the price we are bidding. The naive approach would be to take the average viewability rate of all websites and apps and decrease the bidding price by that. It is possible, that this is working, but since you would decrease the buying price by an considerable fraction, the available inventory might just be too low or too bad in quality.
 Alternatively, you could select websites and apps with a high viewability rate and only deliver on them. This approach might be feasable, but it involves a very high degree of manual optimization and you'd still need to decrease the bidding price. Plus, it only makes use of one information (the publisher) while a lot of other information might be related to the viewability rate.
@@ -113,6 +111,13 @@ So, if a viewable impression has the value of one cent to us and the probability
 Mission accomplished. There are two note-worthy aspects to this: First, we do not buy the viewable impressions for the cheapest possible price. This is approached with another mechanism. We are buying the viewable impression for a defined price and can allways be sure, to buy for that price or lower.
 This allows us to offer viewable impression for a defined price to our customers without the risk over over-paying.
 And second, this mechanism does not necessarily improve the rate of viewable impressions. We do not care if we buy many impressions with a low viewability rate or a few with a high. Since the potential customer only cares about viewable impressions, this is OK.
+
+To sum up, the general data flow can be vizualized by the following graph.
+
+<p align="center"> <img src="../images/Viewability/overview.png">
+General data flow.
+</p>
+
 
 #### Monitoring
 
