@@ -9,7 +9,7 @@ header-img: "images/Viewability/title.png"
 ---
 
 Hello. Let me start by telling you, that viewability is somewhat of a pet peeve of mine. First of all, the word is dumb. It is an artificial creation of the advertising industry, which due to some strange reason does not want to use the perfectly fine "visibility".
-Viewability measurement and delivery should be the absolute standard nowadays. According to the [definition of the IAB](https://www.iab.com/wp-content/uploads/2015/06/MRC-Viewable-Ad-Impression-Measurement-Guideline.pdf), an advertisement is considered viewable (*crinch*) when more than 50% of its content was in the viewport for more than one second.
+Viewability measurement and delivery should be the absolute standard nowadays. According to the [definition of the IAB](https://www.iab.com/wp-content/uploads/2015/06/MRC-Viewable-Ad-Impression-Measurement-Guideline.pdf), an advertisement is considered viewable (*cringe*) when more than 50% of its content was in the viewport for more than one second.
 
 <p align="center"> <img src="../images/Viewability/view.png">
 </p>
