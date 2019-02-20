@@ -88,7 +88,9 @@ Therefore, we use machine learning in order to weight the price of each individu
 We train two independent machine learning models, one for measuring viewability and the other one for the viewability itself. As explained above, the measurement is a technical challenge. Therefore it is influenced by technical parameters like browser version or operating system.
 On the other hand, the viewability is influenced mostly by the publisher, the ad unit itself, and the position on the site. Since the relation between those features are very different for the different metrics, we separate them in two independent models.
 
-<p align="center"> <img src="../images/Viewability/prop.png"></p>
+<p align="center"> <img src="../images/Viewability/prop.png">
+Illustration of properties related to viewability.
+</p>
 
 Based on historic data, we have a ground truth dataset in the form:
 > impression ID | measurable | viewable | features
