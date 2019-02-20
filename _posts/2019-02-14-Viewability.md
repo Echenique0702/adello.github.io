@@ -16,8 +16,9 @@ Viewability measurement and delivery should be the absolute standard nowadays. A
 
 From my point of view, this should be the absolute minimum requirement for an ad to be "delivered".
 But interestingly, the guarantee of viewability is not in high demand. We offer the possibility of only paying for viewable impressions, admittedly, for a markup. But simple math leads you to the inadvertent conclusion, that it is well worth investing the markup if you are interested in viewable impressions. Given, that the average viewability rate in the market is 50%, this should be a no-brainer.
+If we assume a markup of 30%, our viewability product ([https://www.adello.com/products/our-products/]) will deliver approximately 150% viewable impressions compared to a traditional campaign for the same amount of money. It continues to puzzle me, why customers still prefer the traditional 'spend and hope' over the 'spend and verify' approach.
 
-So, now that I got this out of my system, I want to explain, how we measure and deliver viewability.
+So in this blog post, I want to explain, how we measure and deliver viewability.
 
 
 ### Measuring
