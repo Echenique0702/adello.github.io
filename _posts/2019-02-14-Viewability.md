@@ -11,14 +11,18 @@ header-img: "images/Viewability/title.png"
 Hello. Let me start by telling you, that viewability is somewhat of a pet peeve of mine. First of all, the word is dumb. It is an artificial creation of the advertising industry, which due to some strange reason does not want to use the perfectly fine "visibility".
 Viewability measurement and delivery should be the absolute standard nowadays. According to the [definition of the IAB](https://www.iab.com/wp-content/uploads/2015/06/MRC-Viewable-Ad-Impression-Measurement-Guideline.pdf), an advertisement is considered viewable (*crinch*) when more than 50% of its content was in the viewport for more than one second.
 
-<p align="center"> <img src="../images/Viewability/view.png"> </p>
+<p align="center"> <img src="../images/Viewability/view.png">
+Definition of viewability, according to IAB.
+</p>
 
 From my point of view, this should be the absolute minimum requirement for an ad to be "delivered".
 But interestingly, the guarantee of viewability is not in high demand. We offer the possibility of only paying for viewable impressions, admittedly, for a markup. But simple math leads you to the inadvertent conclusion, that it is well worth investing the markup if you are interested in viewable impressions. Given, that the average viewability rate in the market is 50%, this should be a no-brainer.
 
 So, now that I got this out of my system, I want to explain, how we measure and deliver viewability.
 
-<p align="center"> <img src="../images/Viewability/overview.png"> </p>
+<p align="center"> <img src="../images/Viewability/overview.png">
+General data flow.
+</p>
 
 ### Measuring
 
@@ -86,14 +90,14 @@ Therefore, we use machine learning in order to weight the price of each individu
 We train two independent machine learning models, one for measuring viewability and the other one for the viewability itself. As explained above, the measurement is a technical challenge. Therefore it is influenced by technical parameters like browser version or operating system.
 On the other hand, the viewability is influenced mostly by the publisher, the ad unit itself, and the position on the site. Since the relation between those features are very different for the different metrics, we separate them in two independent models.
 
-<p align="center"> <img src="../images/Viewability/prop.png"> </p>
+<p align="center"> <img src="../images/Viewability/prop.png"></p>
 
 Based on historic data, we have a ground truth dataset in the form:
 > impression ID | measurable | viewable | features
 > 1234 | 1 | 0 | *list of features*
 > 1235 | 1 | 1 | *list of features*
 
-The features consist of various properties of the context (e.g. app/site, position on the site), the content (e.g. size of the ad unit), and the user and device (e.g. operating system, browser version)
+The features consist of various properties of the context (e.g. app/site, position on the site), the content (e.g. size of the ad unit), and the user and device (e.g. operating system, browser version).
 For the measurement model we take all impressions and use the measurable column as target in a supervised classification model (namely a Neural Network).
 After a successful training, the output of this model can be interpreted as the probability of impressions to be measurable. The training of the viewability model only uses impressions, which are measurable, and uses the viewability column as target.
 Thus, this model provides the probability for viewability given the measurement was successful. As a consequence, the total probability for viewability is:
