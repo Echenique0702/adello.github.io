@@ -129,7 +129,7 @@ Therefore, we monitor this capability by regularly producing and checking the fo
 <p align="center"> <img src="../images/Viewability/diag.png"> </p>
 
 On the x-axis you can see the output of the machine-learning model. On the y-axis is the ratio of events (fraction of measures/views) in a bin of the output. If the output of the model is a probability, the data points should all lie on the diagonal y = x within a given uncertainty.
-This uncertainty originates from probabalistic nature of the underlying numbers.
+This uncertainty originates from probabilistic nature of the underlying numbers.
 
 Based on plots like this, we judge and monitor the performance of our delivery. As you can see, the relation is not perfect, but it is well within the requirements of the approach.
 
