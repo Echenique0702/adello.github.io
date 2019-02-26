@@ -29,7 +29,8 @@ $(el).offset();        /* vs */  el.getBoundingClientRect();
 $.proxy(fn, context);  /* vs */  fn.bind(context);
 ```
 
-I will stress a bit that jQuery and other similar libraries and frameworks still have strong uses. Although, creatives are lighter in their nature and we need to weigh the Use versus Overhead.
+When using a popular library, there is also the concern of version conflict with the one on the publisher. 
+I will stress a bit that jQuery and other similar libraries and frameworks still have strong uses, however, creatives are lighter in their nature and we need to weigh the Use versus Overhead.
 
 ### Naming Convention and Code Structure
 Our creatives get loaded in various environments, in friendly or non-friendly iframes, inside native apps, but a significant amount of times, a creative is also loaded directly in the publisher's topframe. This means our styling and javascript has direct access to the publisher's DOM, and vice versa.
@@ -110,7 +111,7 @@ Another popular reset css I can recommend is from [John Meyer](https://meyerweb.
 ### Code minification
 Code minification goes without saying, the final code that gets delivered no longer needs to be human readable. Therefore, we can apply code minification to remove comments, spaces, new lines and other unnecessary code for the machine. Most importantly, this can also be applied for css and html, where unnecessary code can be removed. 
 
-Besides minification, the code gets bundled as well, as the development sources are organized and split into separate files that are easier to read, edit and further develop.
+Sources are also bundled into a single file to reduce the clutter of HTTP requests in the browser.
 
 In general, the entire minification process can reduce up to 60% and that is a significant change in the creative's load time.
 
@@ -170,7 +171,7 @@ Assets are usually the heaviest in size when delivering 3rd party content and ne
 #### SpriteSheet
 A spritesheet is the combination of more images into a single larger one, this leads to less memory used and better performance by having less requests.
 #### Compression
-For lighter assets that don't require an alpha channel, we use JPG and we found that a compression of around 80% gives the best quality / file size ratio. As well, we strip all the metadata and use Progressive Encoding instead of the default "Baseline mode", for better UX.
+For lighter assets that don't require an alpha channel, we use JPG with a standard compression rate of 80% for optimal image quality / file size ratio. As well, we strip all the metadata and use Progressive Encoding instead of the default "Baseline mode", for faster display.
 Though, there are more modern image formats, such as WebP and JP2 (JPG 2000), that have a superior compression and better quality characteristics than their counterparts, JPG and PNG.
 The support for JP2 has not grown as predicted, but it is supported by Safari, where as WebP is more popular, but not yet supported by Safari. With that in mind, we can use some simple methods to detect which is supported and use them accordingly.
 Detection methods for WebP and JP2 support:
