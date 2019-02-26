@@ -3,7 +3,7 @@ layout: post
 title: Caring for the Publisher
 subtitle: Seamless 3rd Party Integration
 category: frontend
-tags: [3rdpartydevelopment, howto]
+tags: [mobile, creatives]
 author: Cătălin Berța
 header-img: "images/Caring-For-The-Publisher/header-bg.jpg"
 ---
