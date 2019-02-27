@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Caring for the Publisher
-subtitle: Seamless 3rd Party Integration
+title: Rich Media Creatives
+subtitle: Seamless publisher integration
 category: frontend
-tags: [mobile, creatives]
+tags: [frontend, mobile]
 author: Cătălin Berța
-header-img: "images/Caring-For-The-Publisher/header-bg.jpg"
+header-img: "images/Rich-Media-Creatives/header-bg.jpg"
 ---
 
 As an introductory article to the frontend section of the blog, we would like to give a quick overview of some of the best practices that our creatives go through before being delivered to various publishers that come in many forms and sizes.
