@@ -58,7 +58,7 @@ To avoid that, we use a pattern to add the entire creative functionality under o
 
 ### No Frameworks or Boilerplates
 Another easy reach for simplicity is a CSS boilerplate to either normalize or stylize html elements so that we no longer have to write basic styles. Though, since a creative is very light in its nature when it comes to its mark-up language, even a simple boilerplate can be overhead. This leads to having normalization of elements you don't use or having to rewrite the normalization styles anyway.
-We did, however, create a custom css reset style that only takes care of some basic resetting, because for our purposes,  we only need to target a few elements and states and ensure they behave the same.
+We did, however, create a custom css reset style that only takes care of some basic resetting, because for our purposes,  we only need to target a few elements that are more creative focused.
 
 
 ```less
