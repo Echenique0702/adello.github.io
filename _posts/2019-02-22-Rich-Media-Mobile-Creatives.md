@@ -1,22 +1,22 @@
 ---
 layout: post
-title: Rich Media Creatives
+title: Rich Media Mobile Creatives
 subtitle: Seamless publisher integration
 category: frontend
 tags: [frontend, mobile]
 author: Cătălin Berța
-header-img: "images/Rich-Media-Creatives/header-bg.jpg"
+header-img: "images/Rich-Media-Mobile-Creatives/header-bg.jpg"
 ---
 
-As an introductory article to the frontend section of the blog, we would like to give a quick overview of some of the best practices that our creatives go through before being delivered to various publishers that come in many forms and sizes.
+As an introductory article to the frontend section of the blog, we would like to give a quick overview of some of the best practices that our creatives go through before being delivered to various publishers. Those publishers come in many forms and sizes.
 
-The speed of the publisher web pages can be often hurt by 3rd party content, the publishers having somewhat no control over what the content loads on its end, how big the files are or how that impacts the end-user experience.
+The speed of the publisher web pages can be often hurt by 3rd party content. The publishers have no control over what the content loads on its end, how big the files are or how that impacts the end-user experience.
 
 Here at Adello, we do not only care how our creatives impact the publisher's overall page performance. We are also very aware that what helps the publisher, helps us. Two main points would be load speed and seamless integration.
 So to ensure that our creatives load seamlessly in their environment, here are a few rules of thumb we follow that are mainly categorized into two aspects, best practices and improvements.
 
 ### Vanilla Code
-It is tempting to jump over using online libraries to get things done quicker and easier, such as jQuery, Bootstrap, GreenSock to name a few. However, if they are not heavily used, such as in a full-featured website, then they add too much overhead and impact load and browsing performance.<br>
+It is tempting to jump over using online libraries to get things done quicker and easier, such as jQuery, Bootstrap, GreenSock to name a few. However, if they are not heavily used, such as in a full-featured website, they add too much overhead and impact load and browsing performance.<br>
 Taking [jQuery](https://jquery.com/) as example, nowadays, JavaScript is better supported in most browsers and we no longer have to cover so much cross-browser compatibility solutions. Already, a wide number of jQuery methods are supported natively by JavaScript and I don't need to say this, but native is better, and faster!
 Here are just a few common examples where JavaScript shines over methods that were popularly used with jQuery:
 
@@ -30,7 +30,7 @@ $.proxy(fn, context);  /* vs */  fn.bind(context);
 ```
 
 When using a popular library, there is also the concern of version conflict with the one on the publisher. 
-I will stress a bit that jQuery and other similar libraries and frameworks still have strong uses, however, creatives are lighter in their nature and we need to weigh the Use versus Overhead.
+I will stress a bit that jQuery and other similar libraries and frameworks still have strong uses, however, creatives are lighter in their nature and we need to weigh the use versus overhead.
 
 ### Naming Convention and Code Structure
 Our creatives get loaded in various environments, in friendly or non-friendly iframes, inside native apps, but a significant amount of times, a creative is also loaded directly in the publisher's topframe. This means our styling and javascript has direct access to the publisher's DOM, and vice versa.
@@ -51,7 +51,7 @@ Though when styling our creatives, we have to be careful not to create global se
 .myCreative .header.hide { display: none; }
 ``` 
 
-This process gets much easier by using a css pre-processor, such as less or sass.
+This process gets much easier by using a css pre-processor, such as Less or Sass.
 
 In JavaScript we have a similar situation, where sometimes methods and functionality is added directly onto the global namespace. This can cause collision with the publisher's variables or methods.
 To avoid that, we use a pattern to add the entire creative functionality under one single exposed prefixed variable.
@@ -135,7 +135,7 @@ function scriptLoaded() {
 So far, we have looked at a few basic best practices, but we go the extra mile, as there are some improvements we can perform that would make the integration even smoother.
 
 ### Avoiding Scroll Jank with Passive Event listeners 
-Ever swiped a page to scroll but it simply lagged or stuttered? That is usually Scroll Jank and it is caused by event listeners in the page. Instead of scrolling smoothly, the browser has to check each event listener, such as touchstart or touchmove, to make sure that it is not trying to block the scrolling by calling the `event.preventDefault` method, losing precious time and performance doing so. The problem comes when there are such event listeners that don't block scrolling, but the browser has to check them anyway. And here is where Passive Event listeners come in, by being able to promise the browser that you will not call `event.preventDefault()` and the browser no longer has to check and can continue the scroll smoothly.
+Ever swiped a page to scroll but it simply lagged or stuttered? That is usually Scroll Jank and it is caused by event listeners in the page. Instead of scrolling smoothly, the browser has to check each event listener, such as touchstart or touchmove, to make sure that it is not trying to block the scrolling by calling the `event.preventDefault` method, losing precious time and performance doing so. The problem comes when there are such event listeners that don't block scrolling, but the browser has to check them anyway. And here is where Passive Event listeners come in. They are able to promise the browser that you will not call `event.preventDefault()` and the browser no longer has to check and can continue the scroll smoothly.
 
 Adding a passive event listener:
 ```javascript
@@ -143,7 +143,7 @@ element.addEventListener('touchstart', function() {}, {passive: true});
 ```
 
 
-While they have been here for quite a while, they are used in the 3rd parameter for an event listener. This means that for older browser that do not support them, the above will translate into an event listener with Capture Event enabled, since the object `{passive: true}` will be read as a truthy value. But in order to ensure you can use it safely in older browsers, a detection for Passive Events Listeners can be used before attaching them:
+While they have been here for quite a while, they are used in the 3rd parameter for an event listener. This means that for older browser which do not support them, the above will translate into an event listener with Capture Event enabled, since the object `{passive: true}` will be read as a truthy value. But in order to ensure you can use it safely in older browsers, a detection for Passive Events Listeners can be used before attaching them:
 
 ```javascript
 var supportsPassive = false;
@@ -169,7 +169,7 @@ The Passive Event listeners were mainly created for mobile and it is a game chan
 ### Optimized assets and sprites 
 Assets are usually the heaviest in size when delivering 3rd party content and need the extra attention. There are mainly two methods to approach image optimization, through spritesheets and compression.  
 #### SpriteSheet
-A spritesheet is the combination of more images into a single larger one, this leads to less memory used and better performance by having less requests.
+A spritesheet is the combination of multiple images into a single larger one. This leads to less memory used and better performance by having less requests.
 #### Compression
 For lighter assets that don't require an alpha channel, we use JPG with a standard compression rate of 80% for optimal image quality / file size ratio. As well, we strip all the metadata and use Progressive Encoding instead of the default "Baseline mode", for faster display.
 Though, there are more modern image formats, such as WebP and JP2 (JPG 2000), that have a superior compression and better quality characteristics than their counterparts, JPG and PNG.
@@ -197,6 +197,6 @@ JP2.src='data:image/jp2;base64,/0//UQAyAAAAAAABAAAAAgAAAAAAAAAAAAAABAAAAAQAAAAAA
 }
 ```
 
-While there are a substantial number of ways to optimize and improve web content, here we touched some that are more focused on 3rd Party Development.
+While there is a substantial number of ways to optimize and improve web content, here we touched some that are more focused on 3rd Party Development.
 
 In the end, the grand goal is to deliver lightweight creatives that seamlessly load and integrate in the publisher's page.
