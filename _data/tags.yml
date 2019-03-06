@@ -42,3 +42,6 @@
 
 - slug: spark
   name: Spark
+
+- slug: frontend
+  name: Frontend
