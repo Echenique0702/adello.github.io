@@ -33,6 +33,6 @@ The other aspect is the possibility of creating a community of like-minded peers
 
 So going into my second year, I would like to use our blog to take some of those nuggets from discussions within Adello and expand on them as blog articles on a more regular basis. 
 
-And if you are a CTO in Germany and beyond, and some of what I wrote above resonates with you, ping me on [linkedin.com](https://www.linkedin.com/in/hlgr360/). Maybe there is a community out there which waits to be build. 
+And if you are a CTO in Germany and beyond, and some of what I wrote above resonates with you, ping me on [linkedin.com](https://www.linkedin.com/in/hlgr360/). Maybe there is a community out there which waits to be built. 
 
 Onwards, to infinity and beyond.
