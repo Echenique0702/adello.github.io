@@ -98,7 +98,7 @@ So now I can run the corresponding script via
 But it doesn't work! It fails with
 >  can't find '\_\_main__' module in 'run_reporting.py'
 
-I'll be damned, if I know why this is happening. But the python process started by Spark wants to run a `__main__` module. Apparantly it is executing the script as a module? Including the script with the `scripts` parameter in the setup scripts yields the same result. Probably is has something to do with the hash thing \[docu, please?\].
+I'll be damned, if I knew why this is happening. But the python process started by Spark wants to run a `__main__` module. Apparantly it is executing the script as a module? Including the script with the `scripts` parameter in the setup scripts yields the same result. Probably is has something to do with the hash thing \[docu, please?\].
 
 But if it wants a main, we will give it one:
 ```
@@ -127,7 +127,7 @@ This is the `__main__.py` file which is deployed together with the rest of the p
 Now, to run a new version of a package, independent if it is a branch or master, we need to
 - commit the code
 - wait for the build and deployment
-- change the version or branch in oozie
+- change the version or branch in Oozie
 - run
 
 So according to the Wikipedia definition, we achieved contiuous delivery!
