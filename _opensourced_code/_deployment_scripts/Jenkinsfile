@@ -1,0 +1,95 @@
+@Library('jenkins-pipeline-lib') _
+
+pipeline {
+  agent any
+
+  environment {
+    PYTHONPATH=".pyenv/lib/python2.7/site-packages:/opt/cloudera/parcels/SPARK2/lib/spark2/python:/opt/cloudera/parcels/SPARK2/lib/spark2/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH"
+    SPARK_HOME="/opt/cloudera/parcels/SPARK2/lib/spark2"
+    PATH="/opt/cloudera/parcels/ad_pydeps/envs/ad_pydeps/bin:.pyenv/bin:$PATH"
+    VERSION=sh(returnStdout: true, script: 'python setup.py --version').trim()
+    NAME=sh(returnStdout: true, script: 'python setup.py --name').trim().replaceAll("-", "_")
+    PYPIREPO = 'https://artifactory.adello.com/repository/pypi-releases/'
+    HDFSLOCATION = '/user/oozie/share/lib/python_libraries/'
+  }
+
+  stages {
+    stage('Install') {
+      steps {
+        sh 'rm -rf .pyenv'
+        sh 'pip install -I --prefix=.pyenv twine nose pycodestyle'
+        sh "pip install -I --prefix=.pyenv -e . --extra-index-url ${env.PYPIREPO}/simple"
+        setBuildDescription()
+      }
+    }
+
+    stage('StaticCodeAnalysis') {
+      steps {
+        sh 'pycodestyle --max-line-length=120 --exclude=.pyenv,build --format=pylint . > pep8.txt || exit 0'
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh 'python setup.py nosetests --with-xunit --logging-filter -py4j.java_gateway'
+      }
+    }
+
+    stage('Package') {
+      steps {
+        sh 'python setup.py bdist_egg bdist_wheel'
+      }
+    }
+
+    stage('DeployToAdelloPypi') {
+      when {
+          branch 'master'
+      }
+      steps {
+        withCredentials([
+              usernamePassword(
+                credentialsId: 'b0a75470-dcf9-47df-a9ea-931156859eed',
+                passwordVariable: 'arti_pw',
+                usernameVariable: 'arti_usr'
+              )
+        ]){
+            sh "python -m twine upload --repository-url ${env.PYPIREPO} -u ${arti_pw} -p ${arti_usr} dist/${env.NAME}-${env.VERSION}-*"
+        }
+      }
+    }
+
+    stage('UploadToHdfs') {
+      steps {
+        script {
+          if (env.GIT_BRANCH == 'master') {
+            putCommand = '-put'
+          } else {
+            putCommand = '-put -f'
+          }
+
+          for (dc in ['use', 'fra', 'hkg']) {
+
+              hdfsCommand = "hadoop --config /etc/hadoop/conf.yarn${dc} fs"
+
+              sh "${hdfsCommand} -mkdir -p hdfs://${dc}-nameservice/${env.HDFSLOCATION}/${env.NAME}/${env.GIT_BRANCH}/${env.VERSION}"
+              sh "${hdfsCommand} ${putCommand} dist/* hdfs://${dc}-nameservice/${env.HDFSLOCATION}/${env.NAME}/${env.GIT_BRANCH}/${env.VERSION}"
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      notifySlack(onlyBranch:'master', channel:'devops_analytics')
+      junit (testResults:'nosetests.xml', allowEmptyResults:true)
+      recordIssues qualityGates: [[threshold: 1, type: 'TOTAL', unstable: true]], tools: [pyLint(pattern: 'pep8.txt')]
+    }
+  }
+}
+
+def setBuildDescription() {
+  script {
+    currentBuild.description = "${env.VERSION}"
+  }
+}
