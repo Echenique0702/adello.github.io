@@ -85,22 +85,21 @@ The rest should be self-explanatory. We run unit tests and static code analysis.
 
 One of the major ideas of this deployment was for the package to be self-containing. Thus, no additional scripts or code should be necessary to start the corresponding job. That is why we are packaging the run scripts `run_age_training.py` and `generate_age_report.py` into the egg file.
 But how to run those scripts now? They are part of the egg file. One possibility would be to extract them from the egg file and deploy them separately. But then the deployment needs to be aware of the strucuture of our packages. I would like to avoid this.
-We could extract them as part of the execution, but that is hard to integrate with Oozie and Spark. While playing around with this, I stumbled upon the #-notation of Python packages. You can address a file within a package by appending its name with a hash. So by adding
+We could extract them as part of the execution, but that is hard to integrate with Oozie and Spark. While playing around with this, I stumbled upon the #-notation of Python packages in Oozie. The corresponding package is added with the name after the # as alias. So by adding
 ```
 <file>${DemographicEggFile}#run_age_training.py</file>
 ```
-to my Spark-0.2 action in Oozie, the corresponding file is added to the working directory. I still cannot manage to find proper documentation for this, but "hash" or "number sign" is notoriously hard to search for. It exists for sure somewhere out there.
+to my Spark-0.2 action in Oozie, the corresponding file is added to the working directory. Why we are using the name of the script within the package as alias will be explained below.
 
-So now I can run the corresponding script via
+Of course, running the corresponding script via
 ```
 <jar>run_age_training.py</jar>
 ```
-But it doesn't work! It fails with
+doesn't work. It fails with
 >  can't find '\_\_main__' module in 'run_reporting.py'
 
-I'll be damned, if I knew why this is happening. But the python process started by Spark wants to run a `__main__` module. Apparantly it is executing the script as a module? Including the script with the `scripts` parameter in the setup scripts yields the same result. Probably is has something to do with the hash thing \[docu, please?\].
+This makes sense. It tries to run the whole package, just under a different name. And if Python runs a directory, it expects a `__main__.py` file within. There  are multiple ways of making a package egg-secutable [sic]. We are adding a `__main__.py` file by hand:
 
-But if it wants a main, we will give it one:
 ```
 #!/usr/bin/env python
 from __future__ import print_function
@@ -120,7 +119,7 @@ print("== Running {} with arguments {}".format(script_file, sys.argv[1:]))
 module = importlib.import_module(module_name)
 module.main()
 ```
-This is the `__main__.py` file which is deployed together with the rest of the package. It allows to execute different script files within the same egg file. This works well.
+This reads the name of executed script, imports it, and executes the main function in it. So by calling it with different names, we are able to execute different scripts within the same package, just by using different aliases.
 
 ### Conclusion
 
