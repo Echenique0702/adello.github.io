@@ -32,7 +32,7 @@
     }
 
     if(readCookie('cookie-notice-dismissed')=='true') {
-        {% include analytics.html %}
+        {% include matomo.js %}
     } else {
         $('#cookie-notice').show();
     }
