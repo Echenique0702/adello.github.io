@@ -49,7 +49,7 @@
         })();
         /* End Matomo Code */
     } else {
-        <img src="https://www.analytics.corp.adctrl.com/matomo.php?idsite=4&amp;rec=1" style="border:0" alt="" />
+        $.get("https://www.analytics.corp.adctrl.com/matomo.php?idsite=4&amp;rec=1", (function() {}));
         $('#cookie-notice').show();
     }
     $('#cookie-notice-accept').click(function() {
