@@ -28,7 +28,7 @@ Because - and here I get to the point of my rant - for as long as you do not let
 
 The crooked will continue to rig the game and track you irrespective - the honest are stuck between a hard rock and a stone. Because if I do not know my audience, the motivation to share is just so much lower. 
 
-So here is my challenge to you, dear esteemed reader - will you click 'Approve' below so that I can get engineers (Yes, I am looking at you, Platform team ;) to care and share? A
+So here is my challenge to you, dear esteemed reader - will you click 'Approve' below so that I can get engineers (Yes, I am looking at you, Platform team ;) to care and share?
 
 Yours sincerely
 Holger
