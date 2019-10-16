@@ -21,8 +21,8 @@ In the spirit of our [Open Source Policy](https://github.com/adello/open-source/
 ---
 Suggestions from my dear friend [@mamund](https://twitter.com/mamund):
 
-Small point, i'd like to see your guideline doc use (outline) numbering, not bullets. makes it a bit easier to refer to when speaking about the guidelines. also, would love to see each of these guidelines having an anchor tag to make it easier to refer to them in docs, emails, and other written comms.
+> Small point, i'd like to see your guideline doc use (outline) numbering, not bullets. makes it a bit easier to refer to when speaking about the guidelines. also, would love to see each of these guidelines having an anchor tag to make it easier to refer to them in docs, emails, and other written comms.
 
-Even smaller point, would love to see more clearly which elements are REQUIRED. there are some references like that in the beginning (Rules) but i think some of the Best Practices ("Service URI should ...") sound like requirements, too.
+> Even smaller point, would love to see more clearly which elements are REQUIRED. there are some references like that in the beginning (Rules) but i think some of the Best Practices ("Service URI should ...") sound like requirements, too.
 
-Love the brevity. When you have this small set, it is easy for others to learn them, remember them, and - therefore - they are more likely to adhere-to and apply them.
+> Love the brevity. When you have this small set, it is easy for others to learn them, remember them, and - therefore - they are more likely to adhere-to and apply them.
