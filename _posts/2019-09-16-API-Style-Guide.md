@@ -18,12 +18,11 @@ In my experience this condensed format works much better with engineering since 
 
 In the spirit of our [Open Source Policy](https://github.com/adello/open-source/blob/master/open-source.md) we would like to share our [API Style Guide](https://github.com/adello/api-style-guide/blob/master/api-style-guide.md) and hope that others can learn from our experiences as we did from theirs.
 
---
-
-Some very valuable feedback from my dear colleague and friend [@mamund](https://twitter.com/mamund):
+---
+Suggestions from my dear friend [@mamund](https://twitter.com/mamund):
 
 Small point, i'd like to see your guideline doc use (outline) numbering, not bullets. makes it a bit easier to refer to when speaking about the guidelines. also, would love to see each of these guidelines having an anchor tag to make it easier to refer to them in docs, emails, and other written comms.
 
 Even smaller point, would love to see more clearly which elements are REQUIRED. there are some references like that in the beginning (Rules) but i think some of the Best Practices ("Service URI should ...") sound like requirements, too.
 
-Love the brevity. When you have this small set, it is easy for others to learn them, remember them, and - therefore - they are more likely to adhere-to/apply them.
+Love the brevity. When you have this small set, it is easy for others to learn them, remember them, and - therefore - they are more likely to adhere-to and apply them.
