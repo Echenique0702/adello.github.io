@@ -19,7 +19,7 @@ In my experience this condensed format works much better with engineering since 
 In the spirit of our [Open Source Policy](https://github.com/adello/open-source/blob/master/open-source.md) we would like to share our [API Style Guide](https://github.com/adello/api-style-guide/blob/master/api-style-guide.md) and hope that others can learn from our experiences as we did from theirs.
 
 ---
-Suggestions from my dear friend [@mamund](https://twitter.com/mamund):
+Feedback from my dear friend [@mamund](https://twitter.com/mamund):
 
 > Small point, i'd like to see your guideline doc use (outline) numbering, not bullets. makes it a bit easier to refer to when speaking about the guidelines. also, would love to see each of these guidelines having an anchor tag to make it easier to refer to them in docs, emails, and other written comms.
 
