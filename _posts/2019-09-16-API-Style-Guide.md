@@ -3,7 +3,7 @@ layout: post
 title: "Our API Style Guide"
 subtitle: "Going from comprehensive to minimalistic (and packing a bigger punch)"
 category: dev
-tags: [api, open-source]
+tags: [api]
 author: Holger Reinhardt
 header-img: "images/home-bg.jpg"
 ---

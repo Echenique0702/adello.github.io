@@ -3,7 +3,7 @@ layout: post
 title: "Open Sourcing Our Open Source Policy"
 subtitle: "Why Github is for more than just code"
 category: dev
-tags: [cto, culture, open-source]
+tags: [cto, culture]
 author: Holger Reinhardt
 header-img: "images/home-bg.jpg"
 ---
