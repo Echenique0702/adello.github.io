@@ -8,7 +8,7 @@ author: Holger Reinhardt
 header-img: "images/home-bg.jpg"
 ---
 
-On September 26th, 2019 I presented our 5 month journey of building our mobile marketing platform [adello.direct](https://www.adello.direct) on AWS Serverless as part of the [Haufe TEC Day](https://work.haufegroup.io). 
+On September 26th, 2019 I presented our 5 month journey of building our mobile marketing platform [adello.direct](https://www.adello.direct) on AWS Serverless as part of the [Haufe TEC Day](http://work.haufegroup.io/TEC-Day-2019-rundowni/). 
 
 In this blog post I will  try to demystify programmatic advertisement. If you want to follow along with my notes, please continue reading below the slides.
 
